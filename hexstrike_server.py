@@ -3499,9 +3499,9 @@ class CTFToolManager:
             "katana": "katana -depth 3 -js-crawl -form-extraction -headless",
             "sqlmap": "sqlmap --batch --level 3 --risk 2 --threads 5",
             "dalfox": "dalfox url --mining-dom --mining-dict --deep-domxss",
-            "gobuster": "gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,txt,js",
+            "gobuster": "gobuster dir -w /home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt -x php,html,txt,js",
             "dirsearch": "dirsearch -u {} -e php,html,js,txt,xml,json -t 50",
-            "feroxbuster": "feroxbuster -u {} -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt",
+            "feroxbuster": "feroxbuster -u {} -w /home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt -x php,html,js,txt",
             "arjun": "arjun -u {} --get --post",
             "paramspider": "paramspider -d {}",
             "wpscan": "wpscan --url {} --enumerate ap,at,cb,dbe",
@@ -4752,7 +4752,7 @@ class ParameterOptimizer:
             base_params.update({
                 "mode": "dir",
                 "threads": 20,
-                "wordlist": "/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
+                "wordlist": "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt"
             })
         elif tool == "sqlmap":
             base_params.update({
@@ -9845,7 +9845,7 @@ def execute_gobuster_scan(target, params):
     """Execute gobuster scan with optimized parameters"""
     try:
         mode = params.get('mode', 'dir')
-        wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
+        wordlist = params.get('wordlist', '/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt')
         additional_args = params.get('additional_args', '')
 
         cmd_parts = ['gobuster', mode, '-u', target, '-w', wordlist]
@@ -9902,7 +9902,7 @@ def execute_sqlmap_scan(target, params):
 def execute_ffuf_scan(target, params):
     """Execute ffuf scan with optimized parameters"""
     try:
-        wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
+        wordlist = params.get('wordlist', '/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt')
         additional_args = params.get('additional_args', '')
 
         # Ensure target has FUZZ placeholder
@@ -9920,7 +9920,7 @@ def execute_ffuf_scan(target, params):
 def execute_feroxbuster_scan(target, params):
     """Execute feroxbuster scan with optimized parameters"""
     try:
-        wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
+        wordlist = params.get('wordlist', '/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt')
         additional_args = params.get('additional_args', '')
 
         cmd_parts = ['feroxbuster', '-u', target, '-w', wordlist]
@@ -10381,7 +10381,7 @@ def gobuster():
         params = request.json
         url = params.get("url", "")
         mode = params.get("mode", "dir")
-        wordlist = params.get("wordlist", "/usr/share/wordlists/dirb/common.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
         additional_args = params.get("additional_args", "")
         use_recovery = params.get("use_recovery", True)
 
@@ -10960,7 +10960,7 @@ def dirb():
     try:
         params = request.json
         url = params.get("url", "")
-        wordlist = params.get("wordlist", "/usr/share/wordlists/dirb/common.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
         additional_args = params.get("additional_args", "")
 
         if not url:
@@ -11242,7 +11242,7 @@ def ffuf():
     try:
         params = request.json
         url = params.get("url", "")
-        wordlist = params.get("wordlist", "/usr/share/wordlists/dirb/common.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
         mode = params.get("mode", "directory")
         match_codes = params.get("match_codes", "200,204,301,302,307,401,403")
         additional_args = params.get("additional_args", "")
@@ -12680,7 +12680,7 @@ def feroxbuster():
     try:
         params = request.json
         url = params.get("url", "")
-        wordlist = params.get("wordlist", "/usr/share/wordlists/dirb/common.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
         threads = params.get("threads", 10)
         additional_args = params.get("additional_args", "")
 
@@ -12776,7 +12776,7 @@ def wfuzz():
     try:
         params = request.json
         url = params.get("url", "")
-        wordlist = params.get("wordlist", "/usr/share/wordlists/dirb/common.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
         additional_args = params.get("additional_args", "")
 
         if not url:
@@ -12811,7 +12811,7 @@ def dirsearch():
         params = request.json
         url = params.get("url", "")
         extensions = params.get("extensions", "php,html,js,txt,xml,json")
-        wordlist = params.get("wordlist", "/usr/share/wordlists/dirsearch/common.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
         threads = params.get("threads", 30)
         recursive = params.get("recursive", False)
         additional_args = params.get("additional_args", "")
@@ -14846,7 +14846,7 @@ def api_fuzzer():
         base_url = params.get("base_url", "")
         endpoints = params.get("endpoints", [])
         methods = params.get("methods", ["GET", "POST", "PUT", "DELETE"])
-        wordlist = params.get("wordlist", "/usr/share/wordlists/api/api-endpoints.txt")
+        wordlist = params.get("wordlist", "/home/dict/fuzzDicts/directoryDicts/Filenames_or_Directories_All.txt")
 
         if not base_url:
             logger.warning("🌐 API Fuzzer called without base_url parameter")
