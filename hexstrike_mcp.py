@@ -176,13 +176,13 @@ class HexStrikeClient:
                     break
                 except requests.exceptions.ConnectionError:
                     logger.warning(f"🔌 Connection refused to {server_url}. Make sure the HexStrike AI server is running.")
-                    time.sleep(2)  # Wait before retrying
+                    time.sleep(1800)  # Wait before retrying
                 except Exception as e:
                     logger.warning(f"⚠️  Connection test failed: {str(e)}")
-                    time.sleep(2)  # Wait before retrying
+                    time.sleep(1800)  # Wait before retrying
             except Exception as e:
                 logger.warning(f"❌ Connection attempt {i+1} failed: {str(e)}")
-                time.sleep(2)  # Wait before retrying
+                time.sleep(1800)  # Wait before retrying
 
         if not connected:
             error_msg = f"Failed to establish connection to HexStrike AI API Server at {server_url} after {MAX_RETRIES} attempts"
