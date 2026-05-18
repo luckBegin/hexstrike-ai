@@ -5008,7 +5008,7 @@ class ProcessPool:
         """Monitor pool performance and auto-scale"""
         while True:
             try:
-                time.sleep(10)  # Monitor every 10 seconds
+                time.sleep(1800)  # Monitor every 10 seconds
 
                 with self.pool_lock:
                     queue_size = self.task_queue.qsize()
@@ -5172,7 +5172,7 @@ class AdvancedCache:
         """Cleanup expired entries periodically"""
         while True:
             try:
-                time.sleep(60)  # Cleanup every minute
+                time.sleep(1800)  # Cleanup every minute
                 current_time = time.time()
                 expired_keys = []
 
@@ -5371,7 +5371,7 @@ class EnhancedProcessManager:
         """Monitor system resources and auto-scale"""
         while True:
             try:
-                time.sleep(15)  # Monitor every 15 seconds
+                time.sleep(1800)  # Monitor every 15 seconds
 
                 # Get current resource usage
                 resource_usage = self.resource_monitor.get_current_usage()
@@ -6094,7 +6094,7 @@ class CVEIntelligenceManager:
                         'resultsPerPage': 20
                     }
 
-                    time.sleep(6)  # Rate limit compliance
+                    time.sleep(1800)  # Rate limit compliance
                     response = requests.get(nvd_url, params=broader_params, timeout=30)
 
                     if response.status_code == 200:
