@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "hexstrike": {
+      "command": "python3",
+      "args": [
+        "/Users/siriusblack/Desktop/hexstrike-ai/hexstrike_mcp.py",
+        "--server",
+        "http://154.40.34.6:8888"
+      ],
+      "type": "stdio"
+    }
+  },
+  "inputs": []
+}
